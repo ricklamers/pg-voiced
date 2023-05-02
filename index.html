@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Essays voiced</title>
+    <style>
+        .audio-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        const audioData = [
+            { title: "How to Get New Ideas", audioPath: "audio/getideas.mp3", link: "http://www.paulgraham.com/getideas.html" },
+        ];
+
+        function createAudioPlayer(audio) {
+            const container = document.createElement('div');
+            container.classList.add('audio-container');
+
+            const title = document.createElement('a');
+            title.href = audio.link;
+            title.innerHTML = audio.title;
+
+            container.appendChild(title);
+
+            const player = document.createElement('audio');
+            player.controls = true;
+            player.src = audio.audioPath;
+
+            container.appendChild(player);
+
+            return container;
+        }
+
+        function init() {
+            const list = document.getElementById('audio-list');
+            audioData.forEach(audio => {
+                const player = createAudioPlayer(audio);
+                list.appendChild(player);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</head>
+<body>
+    <div id="audio-list"></div>
+</body>
+</html>
